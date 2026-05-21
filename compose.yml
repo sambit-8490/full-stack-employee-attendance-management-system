@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+    container_name: attendance-client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    env_file:
+      - ./client/.env
+
+  server:
+    build:
+      context: ./server
+    container_name: attendance-server
+    restart: always
+    ports:
+      - "8010:8010"
+    depends_on:
+      - mongo
+    env_file:
+      - ./server/.env
+
+  mongo:
+    image: mongo:7
+    container_name: attendance-mongo
+    restart: always
+    command: ["mongod", "--bind_ip_all"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mongo_data:

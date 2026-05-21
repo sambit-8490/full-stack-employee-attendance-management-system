@@ -21,8 +21,8 @@
 go.work
 
 # Local environment-specific files
-.env
-*.env
+# .env
+# *.env
 
 # IDE and editor files
 .idea/

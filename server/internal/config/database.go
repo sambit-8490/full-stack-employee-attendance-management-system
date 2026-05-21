@@ -18,7 +18,7 @@ var DB *mongo.Database
 func InitDatabase() {
 	mongoURI := os.Getenv("MONGODB_URI")
 	if mongoURI == "" {
-		mongoURI = "mongodb://localhost:27017"
+		mongoURI = "mongodb://mongo:27017"
 	}
 
 	cmdMonitor := &event.CommandMonitor{

@@ -4,22 +4,16 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: "/alpha/",
+
+  base: '/alpha/',
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
-  server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8010',
-        changeOrigin: true,
-      }
-    }
-  },
+
   css: {
     postcss: './postcss.config.js',
-  }
+  },
 })
